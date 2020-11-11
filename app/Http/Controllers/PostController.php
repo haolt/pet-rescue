@@ -30,4 +30,25 @@ class PostController extends Controller
             'message' => 'Opp!!! The pet does not exist.'
         ], 201);
     }
+
+    // Show All
+    public function showAll(Request $request) {
+
+        $posts = Post::where('user_id', '=', $request->user()->id)->get();
+
+        if($posts->count() > 0)
+        {
+            foreach($posts as $post)
+            {
+                $pet = Pet::where('id', '=', $post->pet_id)->select('*')->first();
+                $post->pet = $pet;
+                unset($post->pet_id);
+            }
+        }
+        
+        return response()->json([
+            'posts' => $posts,
+            'post_quantity' => sizeof($posts)
+        ], 201);
+    }
 }
