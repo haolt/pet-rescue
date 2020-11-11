@@ -1,6 +1,5 @@
 ## Information project
 #### Name: PestRescue
-#### Description: <updating>
 #### Stack: Laravel
 
 ## Contact
