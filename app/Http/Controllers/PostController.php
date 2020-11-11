@@ -70,6 +70,28 @@ class PostController extends Controller
         ], 201);
     }
 
+    // Update
+    public function update(Request $request, $id) {
+        $post = Post::find($id);
+
+        if ($request->input('price')) {
+            $post->price = $request->input('price');
+        }
+
+        $pet = Pet::where('id', '=', $request->input('pet_id'))->select('*')->first();
+
+        if ($pet && $request->input('pet_id')) {
+            $post->pet_id = $request->input('pet_id');
+        }
+
+        $post->save();
+
+        return response()->json([
+            'message' => 'Successfully updated the record!',
+            'record' => $post
+        ], 201);
+    }
+
     // Delete
     public function delete($id)
     {
