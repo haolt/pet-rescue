@@ -51,4 +51,22 @@ class PostController extends Controller
             'post_quantity' => sizeof($posts)
         ], 201);
     }
+
+    // Show detail
+    public function showDetail($id)
+    {
+        $post = Post::where('id', '=', $id)->select('*')->first();
+        if ($post) {
+            $pet = Pet::where('id', '=', $post->pet_id)->select('*')->first();
+            $post->pet = $pet;
+            unset($post->pet_id);
+            return response()->json([
+                'post' => $post
+            ], 201);
+        }
+
+        return response()->json([
+            'message' => 'Opp!!! The post does not exist.'
+        ], 201);
+    }
 }

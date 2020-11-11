@@ -27,7 +27,7 @@ Route::group([
 
         Route::post('posts', [PostController::class, 'create']);
         Route::get('posts', [PostController::class, 'showAll']);
-        // Route::get('pets/{id}', [PetController::class, 'showDetail']);
+        Route::get('posts/{id}', [PostController::class, 'showDetail']);
         // Route::put('pets/{id}', [PetController::class, 'update']);
         // Route::delete('pets/{id}', [PetController::class, 'delete']);
     });
