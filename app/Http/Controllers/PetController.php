@@ -7,7 +7,7 @@ use App\Models\Pet;
 
 class PetController extends Controller
 {
-    // create
+    // Create
     public function create(Request $request) {
 
         // Have not validated yet !!!
@@ -32,7 +32,7 @@ class PetController extends Controller
         ], 201);
     }
 
-    // showAll
+    // Show All
     public function showAll(Request $request) {
 
         $typeQuery = $request->query('type');
@@ -46,6 +46,15 @@ class PetController extends Controller
         return response()->json([
             'pets' => $pets,
             'pet_quantity' => sizeof($pets)
+        ], 201);
+    }
+
+    // Show detail
+    public function showDetail($id)
+    {
+        $pet = Pet::where('id', '=', $id)->select('*')->first();
+        return response()->json([
+            'pet' => $pet
         ], 201);
     }
 
