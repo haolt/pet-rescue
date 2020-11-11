@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PetController;
 
 Route::group([
     'prefix' => 'v1'
@@ -15,5 +16,8 @@ Route::group([
     ], function() {
         Route::get('logout', [AuthController::class, 'logout']);
         Route::get('profile', [AuthController::class, 'user']);
+
+        Route::post('pets', [PetController::class, 'create']);
+        Route::get('pets', [PetController::class, 'showAll']);
     });
 });

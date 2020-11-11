@@ -38,9 +38,7 @@ class AuthController extends Controller
             'address' => $request->input('address'),
             'tel' => $request->input('tel')
         ]);
-        // dd($user);
         $user->save();
-        // return response()->json($user, 201);
         return response()->json([
             'message' => 'Successfully created the record!',
             'record' => $user
