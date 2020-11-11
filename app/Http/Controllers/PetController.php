@@ -91,4 +91,17 @@ class PetController extends Controller
             'record' => $pet
         ], 201);
     }
+
+    // Delete
+    public function delete($id)
+    {
+        $pet = Pet::find($id);
+
+        $pet->delete();
+        
+        return response()->json([
+            'message' => 'Successfully deleted the record!',
+            'record' => $pet
+        ], 201);
+    }
 }
