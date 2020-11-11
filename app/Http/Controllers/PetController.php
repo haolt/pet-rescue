@@ -12,6 +12,8 @@ class PetController extends Controller
 
         // Have not validated yet !!!
 
+        $pet = Pet::where('id', '=', $id)->select('*')->first();
+
         $pet = new Pet;
         $pet->avatar = $request->input('avatar');
         $pet->name = $request->input('name');

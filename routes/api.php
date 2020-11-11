@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PetController;
+use App\Http\Controllers\PostController;
 
 Route::group([
     'prefix' => 'v1'
@@ -24,5 +25,10 @@ Route::group([
         Route::put('pets/{id}', [PetController::class, 'update']);
         Route::delete('pets/{id}', [PetController::class, 'delete']);
 
+        Route::post('posts', [PostController::class, 'create']);
+        // Route::get('pets', [PetController::class, 'showAll']);
+        // Route::get('pets/{id}', [PetController::class, 'showDetail']);
+        // Route::put('pets/{id}', [PetController::class, 'update']);
+        // Route::delete('pets/{id}', [PetController::class, 'delete']);
     });
 });

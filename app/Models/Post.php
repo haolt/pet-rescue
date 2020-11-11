@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Post;
 
-class Pet extends Model
+class Post extends Model
 {
     use HasFactory;
 
@@ -17,16 +17,7 @@ class Pet extends Model
      * @var array
      */
     protected $fillable = [
-        'avatar',
-        'name',
-        'age',
-        'gender',
-        'type_delivery',
-        'type',
-        'breed',
-        'color',
-        'status',
-        'description'
+        'price',
     ];
 
     public function user()
@@ -34,8 +25,8 @@ class Pet extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function post()
+    public function pet()
     {
-        return $this->hasMany(Post::class);
+        return $this->belongsTo(Pet::class);
     }
 }
