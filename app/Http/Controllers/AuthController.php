@@ -36,7 +36,9 @@ class AuthController extends Controller
             'type' => $request->input('type'),
             'avatar' => $request->input('avatar'),
             'address' => $request->input('address'),
-            'tel' => $request->input('tel')
+            'tel' => $request->input('tel'),
+            'opened_time' => $request->input('opened_time'),
+            'closed_time' => $request->input('closed_time')
         ]);
         $user->save();
         return response()->json([
@@ -107,6 +109,12 @@ class AuthController extends Controller
         }
         if ($request->input('tel')) {
             $user->tel = $request->input('tel');
+        }
+        if ($request->input('opened_time')) {
+            $user->opened_time = $request->input('opened_time');
+        }
+        if ($request->input('closed_time')) {
+            $user->closed_time = $request->input('closed_time');
         }
 
         $user->save();
