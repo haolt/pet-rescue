@@ -69,4 +69,17 @@ class PostController extends Controller
             'message' => 'Opp!!! The post does not exist.'
         ], 201);
     }
+
+    // Delete
+    public function delete($id)
+    {
+        $post = Post::find($id);
+
+        $post->delete();
+        
+        return response()->json([
+            'message' => 'Successfully deleted the record!',
+            'record' => $post
+        ], 201);
+    }
 }
