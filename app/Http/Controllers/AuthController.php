@@ -83,6 +83,41 @@ class AuthController extends Controller
         ]);
     }
   
+    // Update
+    public function update(Request $request) {
+        $user = User::find($request->user()->id);
+
+        if ($request->input('username')) {
+            $user->username = $request->input('username');
+        }
+        if ($request->input('password')) {
+            $user->password = bcrypt($request->input('password'));
+        }
+        if ($request->input('email')) {
+            $user->email = $request->input('email');
+        }
+        if ($request->input('avatar')) {
+            $user->avatar = $request->input('avatar');
+        }
+        if ($request->input('type')) {
+            $user->type = $request->input('type');
+        }
+        if ($request->input('address')) {
+            $user->address = $request->input('address');
+        }
+        if ($request->input('tel')) {
+            $user->tel = $request->input('tel');
+        }
+
+        $user->save();
+
+        return response()->json([
+            'message' => 'Successfully updated the record!',
+            'record' => $user
+        ], 201);
+    }
+
+
     /**
      * Logout user (Revoke the token)
      *
@@ -105,4 +140,6 @@ class AuthController extends Controller
     {
         return response()->json($request->user());
     }
+
+
 }

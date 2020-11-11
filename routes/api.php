@@ -16,6 +16,7 @@ Route::group([
     ], function() {
         Route::get('logout', [AuthController::class, 'logout']);
         Route::get('profile', [AuthController::class, 'user']);
+        Route::put('profile', [AuthController::class, 'update']);
 
         Route::post('pets', [PetController::class, 'create']);
         Route::get('pets', [PetController::class, 'showAll']);
