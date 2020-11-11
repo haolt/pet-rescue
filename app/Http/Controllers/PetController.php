@@ -34,19 +34,14 @@ class PetController extends Controller
 
     // showAll
     public function showAll(Request $request) {
-        
-        // $dateQuery = $request->query('date');
-        // $typeQuery = $request->query('type');
 
-        // if ($dateQuery) {
-        //     $pets = Pet::whereDate('created_at', Carbon::today())->get();
-        // }
+        $typeQuery = $request->query('type');
 
-        // if ($typeQuery) {
-        //     $pets = Pet::whereDate('created_at', Carbon::today())->get();
-        // }
+        $pets = Pet::where('user_id', '=', $request->user()->id)->get();
 
-        $pets = Pet::all();
+        if ($typeQuery) {
+            $pets = Pet::where('user_id', '=', $request->user()->id)->where('type', '=', $typeQuery)->get();
+        }
 
         return response()->json([
             'pets' => $pets,
