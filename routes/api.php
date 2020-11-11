@@ -19,5 +19,8 @@ Route::group([
 
         Route::post('pets', [PetController::class, 'create']);
         Route::get('pets', [PetController::class, 'showAll']);
+
+        Route::put('pets/{id}', [PetController::class, 'update']);
+
     });
 });
