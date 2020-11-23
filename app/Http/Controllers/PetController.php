@@ -12,8 +12,6 @@ class PetController extends Controller
 
         // Have not validated yet !!!
 
-        $pet = Pet::where('id', '=', $id)->select('*')->first();
-
         $pet = new Pet;
         $pet->avatar = $request->input('avatar');
         $pet->name = $request->input('name');
@@ -31,7 +29,7 @@ class PetController extends Controller
         return response()->json([
             'message' => 'Successfully created the record!',
             'record' => $pet
-        ], 201);
+        ], 200);
     }
 
     // Show All
@@ -48,7 +46,7 @@ class PetController extends Controller
         return response()->json([
             'pets' => $pets,
             'pet_quantity' => sizeof($pets)
-        ], 201);
+        ], 200);
     }
 
     // Show detail
@@ -57,50 +55,19 @@ class PetController extends Controller
         $pet = Pet::where('id', '=', $id)->select('*')->first();
         return response()->json([
             'pet' => $pet
-        ], 201);
+        ], 200);
     }
 
     // Update
     public function update(Request $request, $id) {
         $pet = Pet::find($id);
-
-        if ($request->input('avatar')) {
-            $pet->avatar = $request->input('avatar');
-        }
-        if ($request->input('name')) {
-            $pet->name = $request->input('name');
-        }
-        if ($request->input('age')) {
-            $pet->age = $request->input('age');
-        }
-        if ($request->input('gender')) {
-            $pet->gender = $request->input('gender');
-        }
-        if ($request->input('type_delivery')) {
-            $pet->type_delivery = $request->input('type_delivery');
-        }
-        if ($request->input('type')) {
-            $pet->type = $request->input('type');
-        }
-        if ($request->input('breed')) {
-            $pet->breed = $request->input('breed');
-        }
-        if ($request->input('color')) {
-            $pet->color = $request->input('color');
-        }
-        if ($request->input('status')) {
-            $pet->status = $request->input('status');
-        }
-        if ($request->input('description')) {
-            $pet->description = $request->input('description');
-        }
-
+        $pet->update($request->all());
         $pet->save();
 
         return response()->json([
             'message' => 'Successfully updated the record!',
             'record' => $pet
-        ], 201);
+        ], 200);
     }
 
     // Delete
@@ -113,6 +80,6 @@ class PetController extends Controller
         return response()->json([
             'message' => 'Successfully deleted the record!',
             'record' => $pet
-        ], 201);
+        ], 200);
     }
 }

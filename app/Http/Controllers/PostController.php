@@ -24,11 +24,11 @@ class PostController extends Controller
             return response()->json([
                 'message' => 'Successfully created the record!',
                 'record' => $post
-            ], 201);
+            ], 200);
         }
         return response()->json([
             'message' => 'Opp!!! The pet does not exist.'
-        ], 201);
+        ], 200);
     }
 
     // Show All
@@ -49,7 +49,7 @@ class PostController extends Controller
         return response()->json([
             'posts' => $posts,
             'post_quantity' => sizeof($posts)
-        ], 201);
+        ], 200);
     }
 
     // Show detail
@@ -62,12 +62,12 @@ class PostController extends Controller
             unset($post->pet_id);
             return response()->json([
                 'post' => $post
-            ], 201);
+            ], 200);
         }
 
         return response()->json([
             'message' => 'Opp!!! The post does not exist.'
-        ], 201);
+        ], 200);
     }
 
     // Update
@@ -89,7 +89,7 @@ class PostController extends Controller
         return response()->json([
             'message' => 'Successfully updated the record!',
             'record' => $post
-        ], 201);
+        ], 200);
     }
 
     // Delete
@@ -102,6 +102,6 @@ class PostController extends Controller
         return response()->json([
             'message' => 'Successfully deleted the record!',
             'record' => $post
-        ], 201);
+        ], 200);
     }
 }
